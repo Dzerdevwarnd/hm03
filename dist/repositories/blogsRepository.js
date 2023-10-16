@@ -26,7 +26,7 @@ exports.blogsRepository = {
             let blog = yield db_1.client
                 .db('hm03')
                 .collection('blogs')
-                .findOne({ id: params.id });
+                .findOne({ id: params.id }, { projection: { _id: 0 } });
             if (blog) {
                 return blog;
             }

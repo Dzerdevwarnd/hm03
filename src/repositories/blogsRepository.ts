@@ -21,7 +21,7 @@ export const blogsRepository = {
 		let blog: blogType | null = await client
 			.db('hm03')
 			.collection<blogType>('blogs')
-			.findOne({ id: params.id })
+			.findOne({ id: params.id }, { projection: { _id: 0 } })
 		if (blog) {
 			return blog
 		} else {
