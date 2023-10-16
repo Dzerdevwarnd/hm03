@@ -8,7 +8,6 @@ export type postType = {
 	blogId: string
 	blogName: string
 	createdAt: Date
-	isMembership: boolean
 }
 
 export const postsRepository = {
@@ -23,7 +22,7 @@ export const postsRepository = {
 		let post: postType | null = await client
 			.db('hm03')
 			.collection<postType>('posts')
-			.findOne({ id: params.id }, { projection: { _id: 0 } })
+			.findOne({ id: params.id })
 		if (post) {
 			return post
 		} else {
@@ -45,7 +44,6 @@ export const postsRepository = {
 			blogId: body.blogId,
 			blogName: '',
 			createdAt: createdDate,
-			isMembership: false,
 		}
 		const result = await client
 			.db('hm03')

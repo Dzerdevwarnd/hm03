@@ -46,7 +46,6 @@ exports.postsRepository = {
                 blogId: body.blogId,
                 blogName: '',
                 createdAt: createdDate,
-                isMembership: false,
             };
             const result = yield db_1.client
                 .db('hm03')
