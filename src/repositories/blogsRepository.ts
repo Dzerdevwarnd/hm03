@@ -14,14 +14,14 @@ export const blogsRepository = {
 		return await client
 			.db('hm03')
 			.collection<blogType>('blogs')
-			.find({})
+			.find({}, { projection: { _id: 0 } })
 			.toArray()
 	},
 	async findBlog(params: { id: string }): Promise<blogType | undefined> {
 		let blog: blogType | null = await client
 			.db('hm03')
 			.collection<blogType>('blogs')
-			.findOne({ id: params.id })
+			.findOne({ id: params.id }, { projection: { _id: 0 } })
 		if (blog) {
 			return blog
 		} else {

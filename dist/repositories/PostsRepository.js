@@ -17,7 +17,7 @@ exports.postsRepository = {
             return yield db_1.client
                 .db('hm03')
                 .collection('posts')
-                .find({})
+                .find({}, { projection: { _id: 0 } })
                 .toArray();
         });
     },
@@ -26,7 +26,7 @@ exports.postsRepository = {
             let post = yield db_1.client
                 .db('hm03')
                 .collection('posts')
-                .findOne({ id: params.id });
+                .findOne({ id: params.id }, { projection: { _id: 0 } });
             if (post) {
                 return post;
             }

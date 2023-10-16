@@ -16,14 +16,14 @@ export const postsRepository = {
 		return await client
 			.db('hm03')
 			.collection<postType>('posts')
-			.find({})
+			.find({}, { projection: { _id: 0 } })
 			.toArray()
 	},
 	async findPost(params: { id: string }): Promise<postType | undefined> {
 		let post: postType | null = await client
 			.db('hm03')
 			.collection<postType>('posts')
-			.findOne({ id: params.id })
+			.findOne({ id: params.id }, { projection: { _id: 0 } })
 		if (post) {
 			return post
 		} else {
