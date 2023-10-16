@@ -1,11 +1,14 @@
+import * as dotenv from 'dotenv'
 import { MongoClient } from 'mongodb'
 import { postType } from './repositories/PostsRepository'
 import { blogType } from './repositories/blogsRepository'
+dotenv.config()
 
-const mongoUri =
-	'mongodb+srv://admin:qwerty123@cluster0.hzh4nyr.mongodb.net/?retryWrites=true&w=majority'
+const mongoUri = process.env.MONGO_URL
 console.log('url:', mongoUri)
-
+if (!mongoUri) {
+	throw new Error("Url doesn't found")
+}
 export const client = new MongoClient(mongoUri)
 
 export const blogsCollection = client.db().collection<blogType>('blogs')

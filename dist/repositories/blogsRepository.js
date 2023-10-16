@@ -37,11 +37,14 @@ exports.blogsRepository = {
     },
     createBlog(body) {
         return __awaiter(this, void 0, void 0, function* () {
+            const createdDate = new Date();
             const newBlog = {
                 id: String(Date.now()),
                 name: body.name,
                 description: body.description,
                 websiteUrl: body.websiteUrl,
+                createdAt: createdDate,
+                isMembership: false,
             };
             const result = yield db_1.client
                 .db('hm03')

@@ -7,6 +7,8 @@ export type postType = {
 	content: string
 	blogId: string
 	blogName: string
+	createdAt: Date
+	isMembership: boolean
 }
 
 export const postsRepository = {
@@ -34,6 +36,7 @@ export const postsRepository = {
 		content: string
 		blogId: string
 	}): Promise<postType> {
+		const createdDate = new Date()
 		const newPost: postType = {
 			id: String(Date.now()),
 			title: body.title,
@@ -41,6 +44,8 @@ export const postsRepository = {
 			content: body.content,
 			blogId: body.blogId,
 			blogName: '',
+			createdAt: createdDate,
+			isMembership: false,
 		}
 		const result = await client
 			.db('hm03')
