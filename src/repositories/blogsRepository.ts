@@ -46,8 +46,9 @@ export const blogsRepository = {
 			.db('hm03')
 			.collection<blogType>('blogs')
 			.insertOne(newBlog)
-		//push
-		return newBlog
+		//@ts-ignore
+		const { _id, ...blogWithoutId } = newBlog
+		return blogWithoutId
 	},
 	async updateBlog(
 		id: string,
