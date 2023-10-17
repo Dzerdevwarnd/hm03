@@ -49,7 +49,9 @@ export const postsRepository = {
 			.db('hm03')
 			.collection<postType>('posts')
 			.insertOne(newPost)
-		return newPost
+		//@ts-ignore
+		const { _id, ...postWithout_Id } = newPost
+		return postWithout_Id
 	},
 	async updatePost(
 		id: string,

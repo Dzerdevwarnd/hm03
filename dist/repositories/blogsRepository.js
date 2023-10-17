@@ -62,8 +62,8 @@ exports.blogsRepository = {
                 .collection('blogs')
                 .insertOne(newBlog);
             //@ts-ignore
-            const { _id } = newBlog, blogWithoutId = __rest(newBlog, ["_id"]);
-            return blogWithoutId;
+            const { _id } = newBlog, blogWithout_Id = __rest(newBlog, ["_id"]);
+            return blogWithout_Id;
         });
     },
     updateBlog(id, body) {
